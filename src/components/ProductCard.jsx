@@ -51,7 +51,7 @@ function ProductCard({
           className="product-cart-button"
           onClick={() => onAddToCart(product)}
         >
-          🛒
+          
         </button>
 
         <button
@@ -59,7 +59,7 @@ function ProductCard({
           onClick={() => onToggleFavorite(product)}
           title="Agregar a favoritos"
         >
-          {isFavorite ? "♥" : "♡"}
+          {isFavorite ? "" : ""}
         </button>
 
       </div>

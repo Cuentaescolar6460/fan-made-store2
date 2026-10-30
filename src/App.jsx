@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import "./App.css";
+import images from "./assets/images.svg";
+import usuario from "./assets/usuario.svg";
 
 const categories = ["Todos", "Stickers", "Pines", "Prints", "Peluches", "Photocards", "Papelería", "Accesorios"];
 
@@ -66,10 +68,27 @@ function App() {
         <button onClick={() => go("artistas")}>Artistas</button>
         <button onClick={() => go("sobre")}>Sobre nosotros</button>
       </nav>
-      <div className="nav-actions">
-        <button className="icon-button" onClick={() => go("favoritos")} aria-label="Favoritos">♡ <small>{favorites.length}</small></button>
-        <button className="icon-button" onClick={() => go("carrito")} aria-label="Carrito">🛒 <small>{cartCount}</small></button>
-      </div>
+      
+<div className="nav-actions">
+  <button
+    className="icon-button"
+    onClick={() => go("favoritos")}
+    aria-label="Favoritos"
+  >
+    <img src="/src/assets/heart.svg" alt="" />
+    <small>{favorites.length}</small>
+  </button>
+
+  <button
+    className="icon-button"
+    onClick={() => go("carrito")}
+    aria-label="Carrito"
+  >
+    <img src="/src/assets/shopping-cart.svg" alt="" />
+    <small>{cartCount}</small>
+  </button>
+</div>
+
     </header>
   );
 
@@ -77,7 +96,15 @@ function App() {
     const artist = artistById(product.artistId);
     const fav = favorites.some((x) => x.id === product.id);
     return <article className="product-card">
-      <button className="product-art" onClick={() => openProduct(product)} aria-label={`Ver ${product.name}`}><span>{product.category === "Peluches" ? "🧸" : product.category === "Papelería" ? "📓" : "✦"}</span></button>
+      
+<button
+  className="product-art"
+  onClick={() => openProduct(product)}
+  aria-label={`Ver ${product.name}`}
+>
+  <img src={images} alt="" />
+</button>
+
       <div className="product-info"><span className="pill">{product.category}</span><h3>{product.name}</h3><button className="artist-link" onClick={() => openArtist(artist.id)}>{artist.name}</button><p>{product.desc}</p><strong>${product.price} MXN</strong></div>
       <div className="card-actions"><button className="secondary" onClick={() => openProduct(product)}>Ver producto</button><button className="favorite" onClick={() => toggleFavorite(product)}>{fav ? "♥" : "♡"}</button><button className="primary small" onClick={() => addToCart(product)}>Agregar</button></div>
     </article>;
@@ -86,12 +113,16 @@ function App() {
   const renderHome = () => <>
     <section className="hero"><div><span className="eyebrow">MARKETPLACE CREATIVO</span><h1>Arte, fandom y productos hechos por artistas independientes.</h1><p>Fan Made Store reúne ilustraciones, coleccionables, papelería y accesorios de diferentes creadores en un solo lugar.</p><button className="primary" onClick={() => go("catalogo")}>Explorar catálogo →</button></div><div className="hero-art"><div className="hero-card"><span>✦</span><b>Fan Made</b><small>creaciones independientes</small></div></div></section>
     <section className="section"><div className="section-heading"><div><span className="eyebrow">DESCUBRE</span><h2>Productos destacados</h2></div><button className="text-button" onClick={() => go("catalogo")}>Ver catálogo →</button></div><div className="grid">{products.slice(0, 4).map((p) => <ProductCard key={p.id} product={p}/>)}</div></section>
-    <section className="section muted"><div className="section-heading"><div><span className="eyebrow">CREADORES</span><h2>Conoce a los artistas</h2></div><button className="text-button" onClick={() => go("artistas")}>Ver artistas →</button></div><div className="artist-grid">{artists.map((a) => <button className="artist-card" key={a.id} onClick={() => openArtist(a.id)}><span className="artist-avatar">{a.name.charAt(0)}</span><h3>{a.name}</h3><p>{a.bio}</p><span>Visitar tienda →</span></button>)}</div></section>
+    <section className="section muted"><div className="section-heading"><div><span className="eyebrow">CREADORES</span><h2>Conoce a los artistas</h2></div><button className="text-button" onClick={() => go("artistas")}>Ver artistas →</button></div><div className="artist-grid">{artists.map((a) => <button className="artist-card" key={a.id} onClick={() => openArtist(a.id)}><span className="artist-avatar">
+  <img src={usuario} alt="" />
+</span><h3>{a.name}</h3><p>{a.bio}</p><span>Visitar tienda →</span></button>)}</div></section>
   </>;
 
   const renderCatalog = () => <section className="section page"><div className="page-title"><span className="eyebrow">COLECCIÓN</span><h1>Catálogo</h1><p>Explora productos de diferentes artistas y encuentra algo que te guste.</p></div><div className="search-row"><input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar productos, categorías o artistas..."/><button className="secondary" onClick={() => { setQuery(""); setCategory("Todos"); }}>Limpiar</button></div><div className="category-list">{categories.map((cat) => <button key={cat} className={category === cat ? "category active" : "category"} onClick={() => selectCategory(cat)}>{cat}</button>)}</div><p className="result-count">{filteredProducts.length} productos encontrados</p><div className="grid">{filteredProducts.map((p) => <ProductCard key={p.id} product={p}/>)}</div>{filteredProducts.length === 0 && <div className="empty"><h2>No encontramos productos</h2><p>Prueba con otra búsqueda o categoría.</p></div>}</section>;
 
-  const renderArtists = () => <section className="section page"><div className="page-title"><span className="eyebrow">ARTISTAS</span><h1>Tiendas de artistas</h1><p>Conoce a los creadores y explora sus catálogos individuales.</p></div><div className="artist-grid large">{artists.map((a) => <button className="artist-card" key={a.id} onClick={() => openArtist(a.id)}><span className="artist-avatar">{a.name.charAt(0)}</span><h2>{a.name}</h2><p>{a.bio}</p><span>Explorar tienda →</span></button>)}</div></section>;
+  const renderArtists = () => <section className="section page"><div className="page-title"><span className="eyebrow">ARTISTAS</span><h1>Tiendas de artistas</h1><p>Conoce a los creadores y explora sus catálogos individuales.</p></div><div className="artist-grid large">{artists.map((a) => <button className="artist-card" key={a.id} onClick={() => openArtist(a.id)}><span className="artist-avatar">
+  <img src={usuario} alt="" />
+</span><h2>{a.name}</h2><p>{a.bio}</p><span>Explorar tienda →</span></button>)}</div></section>;
 
   const renderStore = () => { const artistProducts = products.filter((p) => p.artistId === selectedArtist?.id); return <section className="section page"><button className="back" onClick={() => go("artistas")}>← Volver a artistas</button><div className="artist-banner"><span className="artist-avatar big">{selectedArtist?.name?.charAt(0)}</span><div><span className="eyebrow">TIENDA DE ARTISTA</span><h1>{selectedArtist?.name}</h1><p>{selectedArtist?.bio}</p></div></div><h2 className="subheading">Productos de {selectedArtist?.name}</h2><div className="grid">{artistProducts.map((p) => <ProductCard key={p.id} product={p}/>)}</div></section>; };
 

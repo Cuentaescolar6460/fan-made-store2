@@ -9,7 +9,7 @@ function Profile({ onBack }) {
       <div className="profile-header">
 
         <div className="profile-image">
-          👤
+          
         </div>
 
         <div className="profile-info">
@@ -52,7 +52,7 @@ function Profile({ onBack }) {
           <h2>Mi actividad</h2>
 
           <div className="profile-stat">
-            <span>♡</span>
+            <span></span>
             <div>
               <strong>Favoritos</strong>
               <p>Productos que has guardado.</p>
@@ -60,7 +60,7 @@ function Profile({ onBack }) {
           </div>
 
           <div className="profile-stat">
-            <span>🛒</span>
+            <span></span>
             <div>
               <strong>Carrito</strong>
               <p>Productos que quieres comprar.</p>
@@ -68,7 +68,7 @@ function Profile({ onBack }) {
           </div>
 
           <div className="profile-stat">
-            <span>🎨</span>
+            <span></span>
             <div>
               <strong>Artistas</strong>
               <p>Descubre y apoya a artistas independientes.</p>

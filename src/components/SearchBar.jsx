@@ -3,7 +3,7 @@ function SearchBar({ value, onChange }) {
     <div className="search-bar">
 
       <span className="search-icon">
-        🔍
+        
       </span>
 
       <input

@@ -23,7 +23,7 @@ function About({ onBack }) {
 
         <div className="about-card">
           <div className="about-icon">
-            🎨
+            
           </div>
 
           <h2>Nuestra misión</h2>
@@ -37,7 +37,7 @@ function About({ onBack }) {
 
         <div className="about-card">
           <div className="about-icon">
-            💙
+            
           </div>
 
           <h2>Nuestros valores</h2>
@@ -51,7 +51,7 @@ function About({ onBack }) {
 
         <div className="about-card">
           <div className="about-icon">
-            🛍️
+            
           </div>
 
           <h2>¿Cómo funciona?</h2>
